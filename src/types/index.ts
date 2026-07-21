@@ -41,6 +41,9 @@ export interface Member {
   role: string;
   bio: string;
   image?: string;
+  email?: string;
+  linkedin?: string;
+  focusAreas?: string[];
   socials?: { label: string; href: string }[];
   isLeader?: boolean;
 }

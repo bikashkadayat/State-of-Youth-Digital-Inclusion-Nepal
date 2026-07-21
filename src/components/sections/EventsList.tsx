@@ -1,112 +1,104 @@
-"use client";
-
-import { useState } from "react";
-import Image from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
-import { Calendar, MapPin, ArrowUpRight } from "lucide-react";
+import { MapPin, Calendar, Check, Tag } from "lucide-react";
 import { Container } from "@/components/layout/Container";
-import { events } from "@/data/events";
-import { cn } from "@/lib/utils";
-import type { EventItem } from "@/types";
-
-const tabs = [
-  { key: "upcoming", label: "Upcoming Events" },
-  { key: "past", label: "Past Events" },
-] as const;
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Reveal } from "@/components/motion/Reveal";
+import { activities } from "@/data/events";
 
 export function EventsList() {
-  const [tab, setTab] = useState<"upcoming" | "past">("upcoming");
-  const list = events.filter((e) => e.status === tab);
+  const featured = activities.find((a) => a.featured) ?? activities[0];
+  const rest = activities.filter((a) => a.id !== featured.id);
+  const Icon = featured.icon;
 
   return (
     <section className="py-16 lg:py-24">
       <Container>
-        <div className="mx-auto mb-12 flex w-fit rounded-full border border-slate-200 bg-white p-1.5 shadow-soft">
-          {tabs.map((t) => (
-            <button
-              key={t.key}
-              type="button"
-              onClick={() => setTab(t.key)}
-              className={cn(
-                "relative rounded-full px-6 py-2.5 text-sm font-semibold transition-colors",
-                tab === t.key ? "text-white" : "text-slate-600 hover:text-primary",
-              )}
-            >
-              {tab === t.key && (
-                <motion.span
-                  layoutId="event-tab"
-                  className="absolute inset-0 rounded-full bg-primary"
-                  transition={{ type: "spring", damping: 30, stiffness: 320 }}
-                />
-              )}
-              <span className="relative">{t.label}</span>
-            </button>
-          ))}
-        </div>
+        <SectionHeading
+          eyebrow="Past Activities"
+          title="Programs we've delivered with our community"
+          subtitle="A look at the initiatives our chapter has led to support youth wellbeing, learning and digital confidence."
+        />
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={tab}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.35 }}
-            className="grid gap-7 md:grid-cols-2 lg:grid-cols-3"
-          >
-            {list.length ? (
-              list.map((e) => <EventCard key={e.id} event={e} />)
-            ) : (
-              <p className="col-span-full py-12 text-center text-slate-500">
-                No {tab} events right now — check back soon.
+        {/* Featured activity — image-free gradient + iconography card */}
+        <Reveal className="mx-auto mt-14 max-w-5xl">
+          <article className="group grid overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-card transition-shadow duration-300 hover:shadow-hover lg:grid-cols-[0.9fr_1.1fr]">
+            {/* Visual panel */}
+            <div className="relative flex min-h-[260px] items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-primary-600 to-secondary-600 p-10">
+              <div className="pointer-events-none absolute -left-10 -top-10 h-40 w-40 rounded-full bg-white/10 blur-2xl" />
+              <div className="pointer-events-none absolute -bottom-12 right-0 h-44 w-44 rounded-full bg-accent/25 blur-2xl" />
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.14)_1px,transparent_0)] [background-size:22px_22px]" />
+              <div className="relative flex flex-col items-center text-center">
+                <span className="grid h-24 w-24 place-items-center rounded-3xl bg-white/15 text-white ring-1 ring-white/25 backdrop-blur-sm transition-transform duration-300 group-hover:scale-105">
+                  <Icon className="h-11 w-11" />
+                </span>
+                <span className="mt-5 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3.5 py-1.5 text-xs font-semibold text-white ring-1 ring-white/20">
+                  <Tag className="h-3.5 w-3.5" />
+                  {featured.category}
+                </span>
+              </div>
+            </div>
+
+            {/* Content panel */}
+            <div className="p-8 sm:p-10">
+              <div className="flex flex-wrap items-center gap-4 text-sm font-medium text-slate-500">
+                <span className="flex items-center gap-1.5">
+                  <Calendar className="h-4 w-4 text-primary" />
+                  {featured.dateLabel}
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <MapPin className="h-4 w-4 text-accent" />
+                  {featured.location}
+                </span>
+              </div>
+
+              <h3 className="mt-3 font-heading text-2xl font-bold text-ink">
+                {featured.title}
+              </h3>
+              <p className="mt-4 leading-relaxed text-slate-600">
+                {featured.description}
               </p>
-            )}
-          </motion.div>
-        </AnimatePresence>
+
+              <ul className="mt-6 space-y-2.5">
+                {featured.highlights.map((h) => (
+                  <li key={h} className="flex items-start gap-2.5 text-sm text-slate-700">
+                    <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-accent/12 text-accent">
+                      <Check className="h-3.5 w-3.5" />
+                    </span>
+                    {h}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        </Reveal>
+
+        {rest.length > 0 && (
+          <div className="mx-auto mt-8 grid max-w-5xl gap-6 sm:grid-cols-2">
+            {rest.map((a) => {
+              const AIcon = a.icon;
+              return (
+                <Reveal key={a.id}>
+                  <article className="flex h-full gap-5 rounded-3xl border border-slate-100 bg-white p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-hover">
+                    <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-primary-50 text-primary">
+                      <AIcon className="h-7 w-7" />
+                    </span>
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-wider text-secondary-600">
+                        {a.category}
+                      </p>
+                      <h3 className="mt-1 font-heading text-lg font-bold text-ink">
+                        {a.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                        {a.description}
+                      </p>
+                    </div>
+                  </article>
+                </Reveal>
+              );
+            })}
+          </div>
+        )}
       </Container>
     </section>
-  );
-}
-
-function EventCard({ event }: { event: EventItem }) {
-  return (
-    <article className="group flex flex-col overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-hover">
-      <div className="relative aspect-[16/10] overflow-hidden">
-        <Image
-          src={event.image}
-          alt={event.title}
-          fill
-          sizes="(max-width: 768px) 100vw, 33vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-        <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1 text-xs font-bold text-primary shadow-soft backdrop-blur">
-          {event.tag}
-        </span>
-      </div>
-      <div className="flex flex-1 flex-col p-6">
-        <div className="flex flex-wrap items-center gap-4 text-xs font-medium text-slate-500">
-          <span className="flex items-center gap-1.5">
-            <Calendar className="h-4 w-4 text-primary" />
-            {event.dateLabel}
-          </span>
-          <span className="flex items-center gap-1.5">
-            <MapPin className="h-4 w-4 text-accent" />
-            {event.location}
-          </span>
-        </div>
-        <h3 className="mt-3 font-heading text-lg font-bold text-ink">
-          {event.title}
-        </h3>
-        <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
-          {event.description}
-        </p>
-        <button
-          type="button"
-          className="mt-5 inline-flex items-center gap-1.5 self-start text-sm font-semibold text-primary hover:gap-2.5"
-        >
-          {event.status === "upcoming" ? "Register interest" : "View recap"}
-          <ArrowUpRight className="h-4 w-4" />
-        </button>
-      </div>
-    </article>
   );
 }

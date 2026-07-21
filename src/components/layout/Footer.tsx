@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Mail, MapPin } from "lucide-react";
 import { Container } from "./Container";
@@ -18,20 +19,18 @@ export function Footer() {
       <Container className="grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.1fr]">
         {/* Brand */}
         <div>
-          <div className="flex items-center gap-2.5">
-            <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-primary to-secondary text-white">
-              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden>
-                <path
-                  d="M12 2 3 7v10l9 5 9-5V7l-9-5Z"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinejoin="round"
-                />
-                <circle cx="12" cy="12" r="2.4" fill="currentColor" />
-              </svg>
+          <div className="flex items-center gap-3">
+            <span className="grid h-12 w-12 place-items-center rounded-2xl bg-white/95 p-1.5 shadow-soft">
+              <Image
+                src="/logo-mark.png"
+                alt=""
+                width={160}
+                height={156}
+                className="h-full w-full object-contain"
+              />
             </span>
             <span className="flex flex-col leading-tight">
-              <span className="font-heading text-[15px] font-extrabold text-white">
+              <span className="font-heading text-base font-extrabold text-white">
                 State of Youth
               </span>
               <span className="text-[11px] font-semibold uppercase tracking-wide text-secondary-400">

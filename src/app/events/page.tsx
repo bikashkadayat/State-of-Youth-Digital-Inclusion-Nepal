@@ -5,23 +5,23 @@ import { Gallery } from "@/components/sections/Gallery";
 import { CTASection } from "@/components/sections/CTASection";
 
 export const metadata: Metadata = {
-  title: "Events",
+  title: "Activities",
   description:
-    "Upcoming and past events from State of Youth — Digital Inclusion Nepal: training camps, workshops, outreach and digital inclusion campaigns.",
+    "Past activities from State of Youth — Digital Inclusion Nepal, including our Mental Health Awareness Program on youth wellbeing and healthy technology use.",
 };
 
 export default function EventsPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Events"
+        eyebrow="Activities"
         title={
           <>
-            Where <span className="text-gradient">digital inclusion</span>{" "}
-            comes to life
+            The work behind our{" "}
+            <span className="text-gradient">community impact</span>
           </>
         }
-        description="Join our training camps, workshops and community sessions — or revisit the moments we've already shared across Nepal."
+        description="A record of the programs and sessions our chapter has delivered to support youth wellbeing, learning and digital confidence across Nepal."
       />
       <EventsList />
       <Gallery limit={8} />

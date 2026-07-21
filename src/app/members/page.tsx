@@ -7,7 +7,7 @@ import { CTASection } from "@/components/sections/CTASection";
 export const metadata: Metadata = {
   title: "Members",
   description:
-    "Meet the people behind State of Youth — Digital Inclusion Nepal, led by chapter leader Bikash, and the growing team driving digital inclusion.",
+    "Meet the people behind State of Youth — Digital Inclusion Nepal, led by chapter leader Bikash Kadayat, and the growing team driving digital inclusion.",
 };
 
 export default function MembersPage() {
@@ -21,7 +21,7 @@ export default function MembersPage() {
             <span className="text-gradient">movement</span>
           </>
         }
-        description="Led by chapter leader Bikash, our team of facilitators, mentors and volunteers brings digital confidence to communities across Nepal."
+        description="Led by chapter leader Bikash Kadayat, our team of facilitators, mentors and volunteers brings digital confidence to communities across Nepal."
       />
       <LeaderHighlight />
       <TeamGrid />

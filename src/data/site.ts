@@ -7,7 +7,7 @@ export const site = {
     "Empowering youth and underserved communities across Nepal with the knowledge, skills and confidence to thrive in the digital future.",
   url: "https://stateofyouth-din.bikashkadayat.com.np",
   email: "bikash@digitalinclusionnepal.org",
-  leader: "Bikash",
+  leader: "Bikash Kadayat",
   region: "Kathmandu Valley & Rural Nepal",
   country: "Nepal",
   socials: [

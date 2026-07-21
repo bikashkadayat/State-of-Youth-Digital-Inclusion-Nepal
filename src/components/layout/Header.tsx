@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
@@ -105,32 +106,15 @@ export function Header() {
 
 function Logo() {
   return (
-    <Link href="/" className="flex items-center gap-2.5" aria-label={site.fullName}>
-      <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-primary to-secondary text-white shadow-soft">
-        <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden>
-          <path
-            d="M12 2 3 7v10l9 5 9-5V7l-9-5Z"
-            stroke="currentColor"
-            strokeWidth="1.6"
-            strokeLinejoin="round"
-          />
-          <circle cx="12" cy="12" r="2.4" fill="currentColor" />
-          <path
-            d="M12 4.8v4.2M12 15v4.2M6 8.6l3.6 2M14.4 13.4 18 15.4"
-            stroke="currentColor"
-            strokeWidth="1.4"
-            strokeLinecap="round"
-          />
-        </svg>
-      </span>
-      <span className="flex flex-col leading-tight">
-        <span className="font-heading text-[15px] font-extrabold text-ink">
-          State of Youth
-        </span>
-        <span className="text-[11px] font-semibold uppercase tracking-wide text-secondary-600">
-          Digital Inclusion Nepal
-        </span>
-      </span>
+    <Link href="/" className="flex items-center" aria-label={site.fullName}>
+      <Image
+        src="/logo.png"
+        alt={site.fullName}
+        width={520}
+        height={158}
+        priority
+        className="h-10 w-auto sm:h-12"
+      />
     </Link>
   );
 }

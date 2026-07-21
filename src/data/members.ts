@@ -2,14 +2,17 @@ import { img } from "./images";
 import type { Member } from "@/types";
 
 export const leader: Member = {
-  name: "Bikash",
-  role: "Chapter Leader",
+  name: "Bikash Kadayat",
+  role: "Chapter Leader & Digital Literacy Trainer",
   isLeader: true,
   image: img.leader,
-  bio: "Bikash leads the State of Youth — Digital Inclusion Nepal chapter with a deep belief that access to digital skills is a right, not a privilege. With a background in community education and technology, he coordinates training programs, school workshops and rural outreach across the Kathmandu Valley and beyond — including the chapter's flagship digital literacy program enabling digitalization in the Musahar community. He is building a movement of young people ready to shape Nepal's digital future.",
-  socials: [
-    { label: "Email", href: "mailto:bikash@digitalinclusionnepal.org" },
-    { label: "LinkedIn", href: "https://linkedin.com" },
+  email: "kadayatxbikash2008@gmail.com",
+  linkedin: "https://www.linkedin.com/in/bikash-kadayat-978852273/",
+  bio: "Bikash Kadayat leads State of Youth — Digital Inclusion Nepal with a conviction that digital access and wellbeing are rights, not privileges. As a digital literacy trainer, he designs and delivers hands-on programs — from classroom workshops to rural outreach and the chapter's flagship digital literacy program in the Musahar community. He also champions youth wellbeing, having led the chapter's Mental Health Awareness Program on healthy technology use and resilience. His focus is simple: equip young people with the skills, confidence and support to thrive in a connected world.",
+  focusAreas: [
+    "Digital literacy training",
+    "Community & rural outreach",
+    "Youth wellbeing & resilience",
   ],
 };
 
