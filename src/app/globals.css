@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/*  State of Youth — Digital Inclusion Nepal · Design Tokens          */
+/* ------------------------------------------------------------------ */
+
+@theme {
+  /* Brand palette */
+  --color-primary: #0066cc;
+  --color-primary-50: #e6f0fb;
+  --color-primary-100: #cce1f7;
+  --color-primary-200: #99c3ef;
+  --color-primary-300: #66a5e7;
+  --color-primary-400: #3387df;
+  --color-primary-500: #0066cc;
+  --color-primary-600: #0052a3;
+  --color-primary-700: #003d7a;
+  --color-primary-800: #002952;
+  --color-primary-900: #001429;
+
+  --color-secondary: #00aeef;
+  --color-secondary-50: #e6f8fe;
+  --color-secondary-100: #cceffc;
+  --color-secondary-400: #33c2f3;
+  --color-secondary-500: #00aeef;
+  --color-secondary-600: #008bbf;
+
+  --color-accent: #00c896;
+  --color-accent-50: #e6faf4;
+  --color-accent-100: #ccf4e9;
+  --color-accent-400: #33d3ab;
+  --color-accent-500: #00c896;
+  --color-accent-600: #00a078;
+
+  --color-ink: #1a1a1a;
+  --color-light: #f8fafc;
+
+  /* SDG official-ish accents */
+  --color-sdg4: #c5192d;
+  --color-sdg8: #a21942;
+  --color-sdg9: #fd6925;
+  --color-sdg10: #dd1367;
+
+  /* Typography */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-jakarta), var(--font-inter), ui-sans-serif, sans-serif;
+
+  /* Radii */
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+  --radius-3xl: 1.75rem;
+
+  /* Shadows */
+  --shadow-soft: 0 4px 24px -8px rgb(15 23 42 / 0.12);
+  --shadow-hover: 0 20px 48px -16px rgb(0 102 204 / 0.28);
+  --shadow-card: 0 1px 3px rgb(15 23 42 / 0.06), 0 12px 32px -20px rgb(15 23 42 / 0.28);
+
+  /* Easing */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Base                                                              */
+/* ------------------------------------------------------------------ */
+
+:root {
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+/* Utility: brand gradient text */
+.text-gradient {
+  background: linear-gradient(
+    120deg,
+    var(--color-primary) 0%,
+    var(--color-secondary) 55%,
+    var(--color-accent) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Utility: fluid heading sizes */
+.h-display {
+  font-size: clamp(2.25rem, 5.2vw, 4rem);
+  line-height: 1.04;
+}
+.h-section {
+  font-size: clamp(1.75rem, 3.4vw, 2.75rem);
+  line-height: 1.1;
+}
+
+/* Subtle grid / dot backdrop helper */
+.bg-grid {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgb(15 23 42 / 0.06) 1px,
+    transparent 0
+  );
+  background-size: 28px 28px;
+}
+
+/* Focus ring */
+:where(a, button, input, textarea, select):focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Thin custom scrollbar for horizontal scrollers */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
