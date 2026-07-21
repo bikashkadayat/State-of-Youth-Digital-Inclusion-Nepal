@@ -5,7 +5,7 @@ export const site = {
   tagline: "Bridging Nepal's Digital Divide",
   description:
     "Empowering youth and underserved communities across Nepal with the knowledge, skills and confidence to thrive in the digital future.",
-  url: "https://digitalinclusionnepal.org",
+  url: "https://stateofyouth-din.bikashkadayat.com.np",
   email: "bikash@digitalinclusionnepal.org",
   leader: "Bikash",
   region: "Kathmandu Valley & Rural Nepal",
